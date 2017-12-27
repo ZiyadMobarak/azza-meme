@@ -114,6 +114,21 @@
           console.log("size = " + image.width + " and height = " + image.height);
           canvas.width = image.width;
           canvas.height = image.height;
+
+
+
+          var file = document.querySelector('input[type=file]').files[0];
+          var reader = new FileReader();
+
+          reader.addEventListener("load", function() {
+            image.src = reader.result;
+          }, false);
+
+          if (file) {
+            reader.readAsDataURL(file);
+          }
+
+
           ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
           var topLine = $("#topLineText").val();
           var buttomLine = $("#bottomLineText").val();
