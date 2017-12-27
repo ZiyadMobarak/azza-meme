@@ -76,14 +76,14 @@ textarea {
   width: 50%;
 }
 
-#saveBtn {
+/* #saveBtn {
   border: 3px;
   background-color: rgb(173, 62, 148);
   font-family: 'Philosopher', sans-serif;
   margin-bottom: 10px;
   font-size: 125%;
   width: 33.33%;
-}
+} */
 
 .red-border {
   border: 3px;
