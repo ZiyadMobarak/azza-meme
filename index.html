@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <title>Gift to Azzah</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/jQuery.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <style>
+      #image-container {
+        display: flex;
+      }
+    </style>
+  </head>
+
+  <body>
+
+
+    <!-- Styling for the website -->
+    <div class="container center whole red-border">
+
+      <!-- Here will be my name (The title of this portfolio) -->
+      <header>
+        <div class="row text-center">
+          <div class="col-md-2"></div>
+          <div class="col-md-8">
+            <h1 class="maker-title light-black">Say it Like Azza</h1>
+            <h4 class="maker-subtitle light-black">Meme maker ...</h4>
+          </div>
+          <div class="col-md-2"></div>
+        </div>
+      </header>
+
+      <!-- This is just a break line between the content of my profile and the nav buttons and my name -->
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 ">
+            <hr class="break-line">
+          </div>
+        </div>
+      </div>
+
+      <!-- This for the file input -->
+      <div class="row center">
+        <div class="col-md-4 center"></div>
+        <div class="col-md-4 center">
+          <div class="center">
+            <input type="file" id="file" class="center-block" />
+            <input value="Browse" onclick="document.getElementById('file').click();" id="browse-button" class="white center"></button>
+          </div>
+        </div>
+        <div class="col-md-4 center"></div>
+      </div>
+
+      <!-- This the text -->
+      <div class="row center">
+        <div class="col-md-12 center">
+          <div class="center">
+            <span class="input-text light-black">Top Line:</span><br/>
+            <textarea rows="2" id="topLineText" type="text"></textarea><br/>
+            <span class="input-text light-black">Bottom Line:</span><br/>
+            <textarea rows="2" id="bottomLineText" type="text"></textarea><br/>
+            <!-- <button id="saveBtn">Save</button> -->
+          </div>
+        </div>
+      </div>
+
+      <!-- This for the image -->
+      <div class="row">
+        <div class="col-md-12 center">
+          <div id=" center">
+            <canvas class="canvas margin-ten content"></canvas>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+
+
+    <script>
+      function textChangeListener(evt) {
+        var id = evt.target.id;
+        var text = evt.target.value;
+
+        if (id == "topLineText") {
+          window.topLineText = text;
+        } else {
+          window.bottomLineText = text;
+        }
+
+        redrawMeme(window.imageSrc, window.topLineText, window.bottomLineText);
+      }
+
+      function redrawMeme(image, topLine, bottomLine) {
+        // Get Canvas2DContext
+        var image = new Image();
+        image.src = "img\\" + $('input[type=file]').val().split('\\').pop();
+
+        var canvas = document.querySelector('canvas');
+        var ctx = canvas.getContext("2d");
+
+
+
+        console.log(image.src);
+        image.onload = function() {
+          console.log("Image is loading ... ");
+          console.log("size = " + image.width + " and height = " + image.height);
+          canvas.width = image.width;
+          canvas.height = image.height;
+          ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+          var topLine = $("#topLineText").val();
+          var buttomLine = $("#bottomLineText").val();
+          ctx.strokeStyle = "black";
+          ctx.fillStyle = "white";
+          ctx.font = "36pt Impact";
+          ctx.textAlign = "center";
+          ctx.lineWidth = 3;
+          ctx.fillText(topLine, canvas.width / 2, 40);
+          ctx.strokeText(topLine, canvas.width / 2, 40);
+          ctx.fillText(buttomLine, canvas.width / 2, canvas.height - 20);
+          ctx.strokeText(buttomLine, canvas.width / 2, canvas.height - 20);
+        }
+
+      }
+
+      function saveFile() {
+        window.open(document.querySelector('canvas').toDataURL());
+      }
+
+
+      function handleFileSelect(evt) {
+        var file = evt.target.files[0];
+
+        var reader = new FileReader();
+        reader.onload = function(fileObject) {
+          var data = fileObject.target.result;
+
+          // Create an image object
+          var image = new Image();
+          image.onload = function() {
+
+            window.imageSrc = this;
+            redrawMeme(window.imageSrc, null, null);
+          }
+
+          // Set image data to background image.
+          image.src = data;
+          console.log(fileObject.target.result);
+        };
+        reader.readAsDataURL(file)
+      }
+
+      window.topLineText = "";
+      window.bottomLineText = "";
+      var input1 = document.getElementById('topLineText');
+      var input2 = document.getElementById('bottomLineText');
+      input1.oninput = textChangeListener;
+      input2.oninput = textChangeListener;
+      document.getElementById('file').addEventListener('change', handleFileSelect, false);
+    </script>
+
+  </body>
+
+</html>

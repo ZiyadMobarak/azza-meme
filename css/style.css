@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css?family=Philosopher|Playfair+Display+SC|Quicksand|Yrsa');
+* {
+  box-sizing: border-box;
+}
+
+/* Building my environment 1.0 */
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.white {
+  color: white;
+}
+
+.light-black {
+  color: rgb(74, 73, 75);
+}
+
+.center {
+  text-align: center;
+}
+
+.center-block {
+  float: none;
+}
+
+.whole {
+  height: 100%;
+  border: solid;
+  border-width: thin;
+  border-color: rgb(224, 224, 224);
+  box-shadow: 10px 10px 5px rgb(219, 222, 226);
+  background: -webkit-linear-gradient(rgb(124, 187, 161), rgb(122, 179, 238));
+  /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(rgb(124, 187, 161), rgb(122, 179, 238));
+  /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(rgb(124, 187, 161), rgb(122, 179, 238));
+  /* For Firefox 3.6 to 15 */
+  background: linear-gradient(rgb(124, 187, 161), rgb(122, 179, 238));
+  /* Standard syntax */
+}
+
+textarea {
+  width: 100%;
+  text-align: center;
+}
+
+.margin-ten {
+  margin: 10px;
+}
+
+.maker-title {
+  font-family: 'Quicksand', sans-serif;
+}
+
+.maker-subtitle {
+  font-family: 'Playfair Display SC', serif;
+}
+
+.input-text {
+  font-family: 'Philosopher', sans-serif;
+}
+
+#file {
+  display: none;
+}
+
+#browse-button {
+  border: 3px;
+  background-color: rgb(89, 155, 232);
+  font-family: 'Philosopher', sans-serif;
+  margin-bottom: 10px;
+  font-size: 125%;
+  width: 50%;
+}
+
+.red-border {
+  border: 3px;
+  border-color: red;
+}
+
+/* Canvas part */
+
+.image-container {
+  /* background-color: green; */
+  position: absolute;
+  top: 100px;
+  bottom: 0;
+  width: 85%;
+  padding: 30 30 30 30;
+}
+
+.box .row .content {
+  flex: 1 1 auto;
+}
+
+.canvas {
+  width: 85%;
+  height: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
