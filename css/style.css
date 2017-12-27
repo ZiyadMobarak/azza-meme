@@ -81,6 +81,10 @@ textarea {
   border-color: red;
 }
 
+.url-image {
+  margin-bottom: 10px;
+}
+
 /* Canvas part */
 
 .image-container {

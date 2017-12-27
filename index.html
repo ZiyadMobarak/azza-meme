@@ -51,7 +51,8 @@
         <div class="col-md-4 center">
           <div class="center">
             <input type="file" id="file" class="center-block" />
-            <input value="Browse" onclick="document.getElementById('file').click();" id="browse-button" class="white center"></button>
+            <textarea rows="1" id="url-image" type="text" placeholder="Image URL Goes Here"></textarea><br/>
+            <input value="Grap" onclick="redrawMeme();" id="browse-button" class="white center"></button>
           </div>
         </div>
         <div class="col-md-4 center"></div>
@@ -101,7 +102,8 @@
       function redrawMeme(image, topLine, bottomLine) {
         // Get Canvas2DContext
         var image = new Image();
-        image.src = "img\\" + $('input[type=file]').val().split('\\').pop();
+        image.src = $("#url-image").val();
+        // image.src = "img\\" + $('input[type=file]').val().split('\\').pop();
 
         var canvas = document.querySelector('canvas');
         var ctx = canvas.getContext("2d");
@@ -117,16 +119,16 @@
 
 
 
-          var file = document.querySelector('input[type=file]').files[0];
-          var reader = new FileReader();
-
-          reader.addEventListener("load", function() {
-            image.src = reader.result;
-          }, false);
-
-          if (file) {
-            reader.readAsDataURL(file);
-          }
+          // var file = document.querySelector('input[type=file]').files[0];
+          // var reader = new FileReader();
+          //
+          // reader.addEventListener("load", function() {
+          //   image.src = reader.result;
+          // }, false);
+          //
+          // if (file) {
+          //   reader.readAsDataURL(file);
+          // }
 
 
           ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
